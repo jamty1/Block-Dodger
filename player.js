@@ -44,25 +44,25 @@ function playerAnimate() {
 
     // Handle key events
     // Up
-    if (keys[38]) {
+    if (keys[38] || keys[87]) {
         if (player.velY > -player.maxspeed) {
             player.velY--;
         }
     }
     // Down
-    if (keys[40]) {
+    if (keys[40] || keys[83]) {
         if (player.velY < player.maxspeed) {
             player.velY++;
         }
     }
     // Right
-    if (keys[39]) {
+    if (keys[39] || keys[68]) {
         if (player.velX < player.maxspeed) {
             player.velX++;
         }
     }
     // Left
-    if (keys[37]) {
+    if (keys[37] || keys[65]) {
         if (player.velX > -player.maxspeed) {
             player.velX--;
         }
