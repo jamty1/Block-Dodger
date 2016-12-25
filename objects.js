@@ -37,6 +37,16 @@ function animateObject() {
             squares[i].velY++;
         }
         squares[i].velY *= squares[i].friction;
+
+        // Squares have more movement on levels multiple of 5
+        if (level % 5 == 0) {
+            squares[i].x += squares[i].velX;
+            if (squares[i].velX < 2) {
+                squares[i].velX += getRandom(3, -2);
+            }
+            squares[i].velX *= squares[i].friction;
+        }
+
         checkObjectCanvasCollision(squares[i]);
 
         // Player collided to an object (Game Over)
