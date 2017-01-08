@@ -42,7 +42,7 @@ function animateObject() {
         if (level % 5 == 0) {
             squares[i].x += squares[i].velX;
             if (squares[i].velX < 2) {
-                squares[i].velX += getRandom(3, -2);
+                squares[i].velX += getRandom(2, -1);
             }
             squares[i].velX *= squares[i].friction;
         }
@@ -51,7 +51,10 @@ function animateObject() {
 
         // Player collided to an object (Game Over)
         if (checkPlayerCollision(squares[i])) {
-            document.getElementById("status").innerHTML = "Game Over";
+            clearInterval(squareSpawner);
+            clearInterval(timer);
+            clearInterval(difficulty);
+            document.getElementById("upgrades").innerHTML = "Game Over";
             cancelAnimationFrame(animationId);
             window.clearInterval(timer);
             window.clearInterval(difficulty);
@@ -77,7 +80,7 @@ function checkPlayerCollision(object) {
 // Create a new square every 4 seconds
 // Initial square amount is 3
 var squareAmount = 3;
-window.setInterval(function() {
+var squareSpawner = window.setInterval(function() {
     for (var j = 0; j < squareAmount; j++) {
         newSquare();
     }
@@ -98,10 +101,13 @@ var difficulty = window.setInterval(function() {
 var second = 0;
 var minute = 0;
 var timer = window.setInterval(function() {
+    // As player survives, add money
+    player.money++;
     second++;
     if (second == 60) {
         second = 0;
         minute++;
     }
     document.getElementById("timer").innerHTML = ("0" + minute).slice(-2) + ":" + ("0" + second).slice(-2);
+    document.getElementById("money").innerHTML = "Money: " + player.money;
 }, 1000);

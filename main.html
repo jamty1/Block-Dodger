@@ -11,7 +11,15 @@
 		<div id="status">
 			<div id="level"> Level: 1 </div>
 			<div id="timer"> 00:00 </div>
-			<div id="test"> </div>
+			<div id="money"> </div>
+		</div>
+		<div id="upgrades">
+			<div>
+				<button onclick="speedUpgrade()"> Upgrade Speed </button>
+				<span id="speedcost"></span> <br>
+				<button onclick="decreaseSize()"> Decrease Size </button>
+				<span id="sizecost"></span>
+			</div>
 		</div>
 		<canvas id="container" width="800" height="600"> 
 			Browser does not support canvas 

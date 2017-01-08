@@ -6,3 +6,9 @@ canvas {
     position: absolute;
     left: 900px;
 }
+
+#upgrades {
+    position: absolute;
+    left: 900px;
+    top: 300px;
+}

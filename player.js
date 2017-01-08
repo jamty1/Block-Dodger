@@ -6,7 +6,8 @@ var player = {
     maxspeed: 2,
     friction: 0.90,
     velX: 0,
-    velY: 0
+    velY: 0,
+    money: 0
 }
 var keys = [];
 var mainCanvas;
@@ -23,6 +24,7 @@ function init() {
     player.y = canvasHeight - player.height;
     player.x = canvasWidth / 2;
     mainCanvas.focus();
+    initUpgrades();
     drawSpawnPoint();
     animateObject();
     playerAnimate();
@@ -115,3 +117,36 @@ document.addEventListener("keyup", function (e) {
     keys[e.keyCode] = false;
     e.preventDefault();
 });
+
+
+// Upgrades available for the player to use
+function initUpgrades() {
+    document.getElementById("money").innerHTML = "Money: " + player.money;
+    document.getElementById("speedcost").innerHTML = "Cost: " + speedcost;
+    document.getElementById("sizecost").innerHTML = "Cost: " + sizecost;
+}
+var speedcost = 5;
+function speedUpgrade() {
+    if (player.money >= speedcost) {
+        player.money -= speedcost;
+        player.maxspeed += 0.50;
+        speedcost++;
+        document.getElementById("speedcost").innerHTML = "Cost: " + speedcost;
+    }
+}
+
+var sizecost = 5;
+var sizemax = false;
+function decreaseSize() {
+    if (player.money >= sizecost && !sizemax) {
+        player.money -= sizecost;
+        player.height--;
+        player.width--;
+        sizecost++;
+        document.getElementById("sizecost").innerHTML = "Cost: " + sizecost;
+    }
+    if (player.width == 10) {
+        sizemax = true;
+        document.getElementById("sizecost").innerHTML = "max";
+    }
+}
